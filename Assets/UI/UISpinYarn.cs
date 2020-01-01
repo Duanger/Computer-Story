@@ -75,7 +75,7 @@ public class UISpinYarn : DialogueUIBehaviour
             int i = 0;
             foreach (var optionString in optionsCollection.options) {
                 optionButtons [i].gameObject.SetActive (true);
-                optionButtons [i].GetComponentInChildren<Text> ().text = optionString;
+                optionButtons [i].GetComponentInChildren<TextMeshProUGUI> ().text = optionString;
                 i++;
             }
 
