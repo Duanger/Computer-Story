@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MerinoTempData
   m_EditorClassIdentifier: 
   editedID: 4
-  timestamp: 28494.934986
+  timestamp: 65507.1570735
   viewState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 04000000
@@ -81,7 +81,7 @@ MonoBehaviour:
     leafType: 0
     nodePosition: {x: 32, y: -61}
     cachedParentID: 1
-    cachedSize: 100
+    cachedSize: 0
   - m_ID: 3
     m_Name: Start_MoreExamples
     m_Depth: 1
@@ -98,16 +98,20 @@ MonoBehaviour:
     leafType: 0
     nodePosition: {x: 353, y: -29}
     cachedParentID: 1
-    cachedSize: 125
+    cachedSize: 0
   - m_ID: 4
     m_Name: Writing
     m_Depth: 1
     nodeTags: 
-    nodeBody: "Once Upon a Time \n[[There was a man named Sam|Sam]]\n"
+    nodeBody: 'Once Upon a Time there
+
+      [[there was a man named Sam|Sam]]
+
+'
     leafType: 0
     nodePosition: {x: -172, y: 8}
     cachedParentID: 1
-    cachedSize: 100
+    cachedSize: 0
   - m_ID: 5
     m_Name: Sam
     m_Depth: 1
@@ -116,4 +120,4 @@ MonoBehaviour:
     leafType: 0
     nodePosition: {x: 107, y: 95}
     cachedParentID: 1
-    cachedSize: 100
+    cachedSize: 0

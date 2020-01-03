@@ -50,8 +50,8 @@ colorID: 0
 position: -172,8
 parent: 
 ---
-Once Upon a Time 
-[[There was a man named Sam|Sam]]
+Once Upon a Time there
+[[there was a man named Sam|Sam]]
 
 ===
 title: Sam

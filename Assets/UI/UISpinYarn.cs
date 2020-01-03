@@ -1,19 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using Yarn.Unity;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.XR.WSA.Input;
 
 
 public class UISpinYarn : DialogueUIBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private TextMeshProUGUI lineText;
+    public static UISpinYarn Current;
+    [SerializeField] private Camera _gamm;
+    [SerializeField] private TextMeshProUGUI computerText;
     [SerializeField] private List<Button> optionButtons;
+    [SerializeField] private List<TMP_Text> optionButtonText;
+    [SerializeField] private List<TMP_Text> hiddenButtonText;
+    [SerializeField] private GameObject autoCorrector;
+    [SerializeField] private string[] stringy;
     
     public float textSpeed = 0.025f;
+    public bool FinishedTyping;
+    public bool RightClicked;
     public GameObject dialogueContainer;
 
 
@@ -23,11 +33,12 @@ public class UISpinYarn : DialogueUIBehaviour
 
     void Awake ()
     {
+        Current = this;
         // Start by hiding the container, line and option buttons
         if (dialogueContainer != null)
             dialogueContainer.SetActive(false);
 
-        lineText.gameObject.SetActive (false);
+        computerText.gameObject.SetActive (false);
 
         foreach (var button in optionButtons) {
             button.gameObject.SetActive (false);
@@ -36,7 +47,7 @@ public class UISpinYarn : DialogueUIBehaviour
    public override IEnumerator RunLine (Yarn.Line line)
         {
             // Show the text
-            lineText.gameObject.SetActive (true);
+            computerText.gameObject.SetActive (true);
 
             if (textSpeed > 0.0f) {
                 // Display the line one character at a time
@@ -44,21 +55,17 @@ public class UISpinYarn : DialogueUIBehaviour
 
                 foreach (char c in line.text) {
                     stringBuilder.Append (c);
-                    lineText.text = stringBuilder.ToString ();
+                    computerText.text = stringBuilder.ToString ();
                     yield return new WaitForSeconds (textSpeed);
                 }
             } else {
                 // Display the line immediately if textSpeed == 0
-                lineText.text = line.text;
+                computerText.text = line.text;
             }
-            
-            // Wait for any user input
-            while (Input.anyKeyDown == false) {
-                yield return null;
-            }
-
+            //Here is where the werk is done
+            FinishedTyping = true;
             // Hide the text and prompt
-            lineText.gameObject.SetActive (false);
+            //lineText.gameObject.SetActive (false);
         }
 
         /// Show a list of options, and wait for the player to make a selection.
@@ -73,11 +80,18 @@ public class UISpinYarn : DialogueUIBehaviour
 
             // Display each option in a button, and make it visible
             int i = 0;
-            foreach (var optionString in optionsCollection.options) {
-                optionButtons [i].gameObject.SetActive (true);
-                optionButtons [i].GetComponentInChildren<TextMeshProUGUI> ().text = optionString;
+            foreach (var optionString in optionsCollection.options)
+            {
+             
+                hiddenButtonText[i].gameObject.SetActive(true);
+                hiddenButtonText[i].GetComponentInChildren<TextMeshProUGUI>().text = optionString;
+                /*autoCorrector.GetComponent<Image>().enabled = false;
+                optionButtons[i].GetComponent<Image>().enabled = false;
+                
+                optionButtons[i].GetComponentInChildren<TextMeshProUGUI>().enabled = false;*/
                 i++;
-            }
+            } 
+            
 
             // Record that we're using it
             SetSelectedOption = optionChooser;
@@ -133,9 +147,53 @@ public class UISpinYarn : DialogueUIBehaviour
             Debug.Log ("Complete!");
 
             // Hide the dialogue interface.
-            if (dialogueContainer != null)
-                dialogueContainer.SetActive(false);
+            /*if (dialogueContainer != null)
+                dialogueContainer.SetActive(false);*/
             
             yield break;
         }
+        
+        public void LocateTheWord()
+        {
+            foreach (var buttText in hiddenButtonText)
+            {
+                int index = TMP_TextUtilities.FindIntersectingWord(computerText,
+                    DieCursor.current.mousePossy, _gamm);
+               
+                
+                if (computerText.textInfo.wordInfo[index].GetWord() == buttText.textInfo.wordInfo[0].GetWord())
+                {
+                    Debug.Log("fog");
+                    if (!RightClicked)
+                    {
+                        if (Input.GetMouseButtonDown(1))
+                        {
+                            autoCorrector.SetActive(true);
+                            
+                            for (int i = 0; i < optionButtonText.Count; i++)
+                            {
+                                optionButtons[i].gameObject.SetActive(true);
+                                optionButtonText[i].text = buttText.text;
+                            }
+                            RightClicked = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (RightClicked)
+                    {
+                        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+                        {
+                            autoCorrector.SetActive(false);
+                            RightClicked = false;
+                        }
+                    }
+                }
+            }
+    
+        }
+
+      
+        
 }

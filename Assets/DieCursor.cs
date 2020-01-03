@@ -10,10 +10,12 @@ public class DieCursor : MonoBehaviour
 {
     public static DieCursor current;
     public bool IsPointer;
+    public bool JustRightClicked;
     public Vector2 mousePossy;
 
     [SerializeField] private AudioSource clickSound;
     [SerializeField] private GameObject dieAnschluss;
+    [SerializeField] private GameObject rightClickBox;
     [SerializeField] private Camera cammy;
     [SerializeField] private float cursorSensitivity,lerpAlpha;
     [SerializeField] private RectTransform parentScreen;
@@ -38,7 +40,11 @@ public class DieCursor : MonoBehaviour
         {
             MoveCursor(); 
             ConvertToScreen();
+            UISpinYarn.Current.LocateTheWord();
+            
         }
+
+        
     }
 
     void MoveCursor()
