@@ -10,7 +10,7 @@ public class DieCursor : MonoBehaviour
 {
     public static DieCursor current;
     public bool IsPointer;
-    public bool JustRightClicked;
+    public bool RightClicked;
     public Vector2 mousePossy;
 
     [SerializeField] private AudioSource clickSound;
@@ -40,8 +40,7 @@ public class DieCursor : MonoBehaviour
         {
             MoveCursor(); 
             ConvertToScreen();
-            UISpinYarn.Current.LocateTheWord();
-            
+            GetMouseClick();
         }
 
         
@@ -57,7 +56,6 @@ public class DieCursor : MonoBehaviour
         Vector2 vinger = Vector2.Lerp(rect.anchoredPosition, gar, lerpAlpha);
         //Debug.Log(rect.sizeDelta.x * rect.localScale);
         RestrictCursor(vinger);
-        GetMouseClick();
     }
 
     void RestrictCursor(Vector2 v)
@@ -81,7 +79,23 @@ public class DieCursor : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (RightClicked)
+            {
+                UIYarnTextController.current.DeselectChoiceOptions();
+            }
             clickSound.PlayOneShot(clickSound.clip);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (!RightClicked)
+            {
+                UIYarnTextController.current.FindIntersectingWord(mousePossy);
+            }
+            else
+            {
+                UIYarnTextController.current.DeselectChoiceOptions();
+            }
         }
     }
 }

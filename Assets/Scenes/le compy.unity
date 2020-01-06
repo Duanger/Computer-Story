@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 78928834}
   - component: {fileID: 78928833}
   - component: {fileID: 78928835}
+  - component: {fileID: 78928836}
   - component: {fileID: 78928832}
   m_Layer: 0
   m_Name: dialecting
@@ -280,24 +281,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696b9a3df14b2e34594cbc0a12bcea37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gamm: {fileID: 1139855864}
-  computerText: {fileID: 1065088061}
+  panelRect: {fileID: 1632864279}
+  panelParent: {fileID: 1942445605}
   optionButtons:
   - {fileID: 1470072927}
-  optionButtonText:
-  - {fileID: 548903931}
-  hiddenButtonText:
-  - {fileID: 1054271661}
-  autoCorrector: {fileID: 1632864278}
-  stringy:
-  - 
-  - 
-  - 
-  - 
   textSpeed: 0.025
-  FinishedTyping: 0
-  RightClicked: 0
   dialogueContainer: {fileID: 1942445604}
+--- !u!114 &78928836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78928831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ceeaef738388c74aa67b2fea1f7bb98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StoppedWriting: 0
+  DocumentText: {fileID: 1065088061}
+  actualChoiceText:
+  - {fileID: 548903931}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  storageChoiceText:
+  - {fileID: 1054271661}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerCamera: {fileID: 1139855864}
+  choicePanel: {fileID: 1632864278}
 --- !u!1 &313722413
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +450,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 78928836}
+        m_MethodName: DeactivateChoiceOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &313722418
@@ -486,7 +512,7 @@ GameObject:
   - component: {fileID: 344218201}
   - component: {fileID: 344218200}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: optionText5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1048,7 +1074,7 @@ GameObject:
   - component: {fileID: 548903932}
   - component: {fileID: 548903931}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: optionText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1281,7 +1307,7 @@ GameObject:
   - component: {fileID: 613649753}
   - component: {fileID: 613649752}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: optionText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1589,7 +1615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPointer: 0
-  JustRightClicked: 0
+  RightClicked: 0
   mousePossy: {x: 0, y: 0}
   clickSound: {fileID: 794268224}
   dieAnschluss: {fileID: 758337788}
@@ -2154,7 +2180,7 @@ GameObject:
   - component: {fileID: 1109772208}
   - component: {fileID: 1109772207}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: optionText3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2515,6 +2541,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 78928836}
+        m_MethodName: DeactivateChoiceOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2890,6 +2927,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 78928836}
+        m_MethodName: DeactivateChoiceOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1218723742
@@ -3207,7 +3255,7 @@ GameObject:
   - component: {fileID: 1281076887}
   - component: {fileID: 1281076886}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: optionText4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3768,6 +3816,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 78928836}
+        m_MethodName: DeactivateChoiceOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1470072928
@@ -3819,7 +3878,7 @@ GameObject:
   - component: {fileID: 1632864281}
   - component: {fileID: 1632864280}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: correctionBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3844,11 +3903,11 @@ RectTransform:
   m_Father: {fileID: 1942445605}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 375, y: -344.125}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -128, y: -160}
   m_SizeDelta: {x: 1024, y: 1024}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1632864280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4276,6 +4335,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 78928836}
+        m_MethodName: DeactivateChoiceOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

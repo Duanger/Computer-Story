@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIButtonBehaviour : MonoBehaviour,IPointerEnterHandler,IPointerClickHandler
+public class UIButtonBehaviour : MonoBehaviour,IPointerEnterHandler
 {
     [SerializeField] private bool canResetAfterPress;
     public bool isRightClickButton;
@@ -42,23 +42,5 @@ public class UIButtonBehaviour : MonoBehaviour,IPointerEnterHandler,IPointerClic
     public void OnPointerExit(PointerEventData eventData)
     {
         cursorImage.sprite = pointerSprite;
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            if (!isRightClickButton)
-            {
-                if (!DieCursor.current.JustRightClicked)
-                {
-                    clickBox.SetActive(true);
-                    //DieCursor.current.mousePossy
-
-                    // _r.anchoredPosition = DieCursor.current.mousePossy;
-                    DieCursor.current.JustRightClicked = true;
-                }
-            }
-        }
     }
 }
